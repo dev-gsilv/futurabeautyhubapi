@@ -1,0 +1,78 @@
+Projeto 4 - API Marketplace
+Módulo Programação Web - Intermediário
+Grupo: Leonardo, Heloiza, Guilherme.
+
+Tipo de produto:
+Nome do marketplace:
+Nome da API:
+
+Persistência de dados: ()JSON  ()SQL ()noSQL
+Case type: ()camelCase ()snake_case ()kebab-case
+Commit message: [feat | fix | refactor | doc | revert] descrição
+
+
+Funcionalidades
+Usuários
+1. Cadastro de usuário
+Req: nome do usuario, o email e a senha.
+Res: id do usuario caso tenha sido salvo com sucesso.
+Endpoint:
+Autenticação para acesso? Não
+Owner:
+
+2. Login de usuário
+Req: email e a senha.
+Res: token do usuario para ele conseguir acessar as outras rotas.
+Endpoint:
+Autenticação para acesso? Não
+Owner:
+
+Produtos
+3. Cadastro de produto
+Req: dados de um produto, junto de sua categoria/tipo e foto do produto.
+Res: TBD
+Endpoint:
+Autenticação para acesso? Sim
+Owner:
+
+4. Edição de produto
+Req: dados a alterar
+Res: TBD
+Obs: autorização exclusiva do dono do produto.
+Endpoint:
+Autenticação para acesso? Sim
+Owner:
+
+5. Exclusão de produto
+Req: id a remover
+Res: status 204 ?
+Obs: autorização exclusiva do dono do produto.
+Endpoint:
+Autenticação para acesso? Sim
+Owner:
+
+6. Listagem de produtos de todos os usuários
+Req: TBD
+Res: TBD
+Obs: Deve ser possivel filtrar os produtos de acordo com a categoria e/ou id do usuario
+Endpoint:
+Autenticação para acesso? Não
+Owner:
+
+7. Download da imagem do produto
+Req: link para download
+Res: imagem do produto
+Endpoint:
+Autenticação para acesso? Não
+Owner:
+
+Middlewares
+8. Autenticação
+Rotas: login.
+Tipo: Basic Auth (email + senha)
+Owner: 
+
+9. Autorização
+Rotas: cadastro, edição e exclusão de produtos.
+Tipo: token (JWT ?)
+Owner: 
