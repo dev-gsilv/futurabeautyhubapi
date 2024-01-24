@@ -60,8 +60,8 @@ Autenticação para acesso? Não
 Owner:
 
 7. Download da imagem do produto
-Req: link para download
-Res: imagem do produto
+Req: id do produto
+Res: link para download ? OU arquivo de imagem ?
 Endpoint:
 Autenticação para acesso? Não
 Owner:
@@ -73,6 +73,11 @@ Tipo: Basic Auth (email + senha)
 Owner: 
 
 9. Autorização
-Rotas: cadastro, edição e exclusão de produtos.
+Rotas: edição e exclusão de produtos.
 Tipo: token (JWT ?)
+Owner: 
+
+10. Log de eventos
+Rotas: todas as requisições
+Tipo: lib externa ?
 Owner: 
