@@ -5,6 +5,7 @@ Grupo: Leonardo, Heloiza, Guilherme.
 Tipo de produto: cosméticos.
 Nome do marketplace: Futura Beauty Hub
 Endpoint da API: futurabeutyhubapi
+Repo: https://github.com/dev-gsilv/futurabeutyhubapi
 
 Persistência de dados: ()JSON  ()SQL (x)noSQL > mongoDB
 Case type: (x)camelCase ()snake_case ()kebab-case
