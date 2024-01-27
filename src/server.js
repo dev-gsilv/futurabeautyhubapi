@@ -1,6 +1,5 @@
 const express = require('express');
 const crypto = require('crypto');
-//const jwt = require('jsonwebtoken');
 //const multer = require('multer');
 const fs = require('fs');
 const routes = require('./routes/router');
