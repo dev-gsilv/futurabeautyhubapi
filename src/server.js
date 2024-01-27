@@ -1,13 +1,14 @@
 const express = require('express');
-const routes = require('./routes/router');
 const crypto = require('crypto');
-//const mongoose = require('mongoose');
 //const jwt = require('jsonwebtoken');
 //const multer = require('multer');
 const fs = require('fs');
+const routes = require('./routes/router');
+const conn = require('../src/db/mongo');
 
 const app = express();
 app.use(express.json());
+conn();
 routes(app);
 
 const porta = 3000;

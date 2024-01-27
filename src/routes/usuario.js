@@ -1,12 +1,7 @@
-const express = require('express');
+const registrarUsuario = require('../controllers/usuario.controller');
 
-const router = express.Router();
+const usuarioRoutes = app => {
+    app.post('/registrar', registrarUsuario);
+};
 
-/*
-router.post('/registrar', async (req, res) => {
-    const { nome, email, senha } = req.body;
-    const usuario = new Usuario({ nome, email, senha });
-    await usuario.save();
-    res.json({ id: usuario._id });
-});
-*/
+module.exports = usuarioRoutes;
