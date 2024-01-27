@@ -2,12 +2,12 @@ Projeto 4 - API Marketplace
 Módulo Programação Web - Intermediário
 Grupo: Leonardo, Heloiza, Guilherme.
 
-Tipo de produto:
-Nome do marketplace:
-Nome da API:
+Tipo de produto: cosméticos.
+Nome do marketplace: Futura Beauty Hub
+Endpoint da API: futurabeutyhubapi
 
-Persistência de dados: ()JSON  ()SQL ()noSQL
-Case type: ()camelCase ()snake_case ()kebab-case
+Persistência de dados: ()JSON  ()SQL (x)noSQL > mongoDB
+Case type: (x)camelCase ()snake_case ()kebab-case
 Commit message: [feat | fix | refactor | doc | revert] descrição
 
 
@@ -18,14 +18,14 @@ Req: nome do usuario, o email e a senha.
 Res: id do usuario caso tenha sido salvo com sucesso.
 Endpoint:
 Autenticação para acesso? Não
-Owner:
+Owner: Leonardo
 
 2. Login de usuário
 Req: email e a senha.
 Res: token do usuario para ele conseguir acessar as outras rotas.
 Endpoint:
 Autenticação para acesso? Não
-Owner:
+Owner: Leonardo
 
 Produtos
 3. Cadastro de produto
@@ -33,7 +33,7 @@ Req: dados de um produto, junto de sua categoria/tipo e foto do produto.
 Res: TBD
 Endpoint:
 Autenticação para acesso? Sim
-Owner:
+Owner: Leonardo
 
 4. Edição de produto
 Req: dados a alterar
@@ -67,17 +67,12 @@ Autenticação para acesso? Não
 Owner:
 
 Middlewares
-8. Autenticação
-Rotas: login.
-Tipo: Basic Auth (email + senha)
-Owner: 
-
-9. Autorização
+8. Autorização
 Rotas: edição e exclusão de produtos.
 Tipo: token (JWT ?)
-Owner: 
+Owner: Leonardo
 
-10. Log de eventos
+9. Log de eventos
 Rotas: todas as requisições
 Tipo: lib externa ?
 Owner: 
