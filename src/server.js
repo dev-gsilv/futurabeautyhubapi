@@ -7,6 +7,13 @@ const conn = require('../src/db/mongo');
 
 const app = express();
 app.use(express.json());
+
+// LOGGER
+app.use((req, res, next) => {
+    console.log(`${new Date().toISOString()} - ${req.method} ${req.url}`);
+    next();
+});
+
 conn();
 routes(app);
 
