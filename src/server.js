@@ -1,6 +1,4 @@
 const express = require('express');
-const crypto = require('crypto');
-const fs = require('fs');
 
 const routes = require('./routes/router');
 const conn = require('../src/db/mongo');
@@ -8,13 +6,15 @@ const conn = require('../src/db/mongo');
 const app = express();
 app.use(express.json());
 
-// LOGGER
+// Logger manual
 app.use((req, res, next) => {
     console.log(`${new Date().toISOString()} - ${req.method} ${req.url}`);
     next();
 });
 
+// Inicializa a conexão com o banco de dados
 conn();
+// Inicializa o agregador de rotas
 routes(app);
 
 const porta = 3000;
