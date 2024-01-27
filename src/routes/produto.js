@@ -1,26 +1,20 @@
-const express = require('express');
+const Produto = require('../models/Produto');
+const autenticar = require('../utils/autenticacao');
+const upload = require('../utils/multer.uploader');
+const {
+    cadastrarProduto,
+    editarProduto,
+} = require('../controllers/produto.controller');
 
-const router = express.Router();
-/*
-router.post('/produtos', autenticar, upload.single('imagem'), async (req, res) => {
-    const { nome, categoria } = req.body;
-    const idUsuario = req.usuario.userId;
-    const imagem = req.file.filename;
-    const produto = new Produto({ nome, categoria, idUsuario, imagem });
-    await produto.save();
-    res.json(produto);
-});
+const produtoRoutes = app => {
+    app.post(
+        '/produtos',
+        autenticar,
+        upload.single('imagem'),
+        cadastrarProduto,
+    );
 
-router.put('/produtos/:id', autenticar, async (req, res) => {
-    const idProduto = req.params.id;
-    const idUsuario = req.usuario.userId;
+    app.put('/produtos/:id', autenticar, editarProduto);
+};
 
-    const produto = await Produto.findOne({ _id: idProduto, idUsuario });
-
-    if (!produto) {
-        return res
-            .status(403)
-            .json({ erro: 'Você não tem permissão para editar este produto' });
-    }
-});
-*/
+module.exports = produtoRoutes;
