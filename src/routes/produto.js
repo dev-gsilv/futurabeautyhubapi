@@ -16,7 +16,7 @@ const produtoRoutes = app => {
         upload.single('imagem'),
         cadastrarProduto,
     );
-    app.get('/produtos', autenticar, buscarProduto);
+    app.get('/produtos', buscarProduto);
 
     app.put(
         '/produtos/:id',

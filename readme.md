@@ -1,34 +1,129 @@
 # Futura Beauty Hub
 
-Está é uma API para um marketplace de cosméticos, produtos de beleza e de higiêne. Escrita na linguagem Node.js e no framework Express.js, com banco de dados MongoDB. Aqui, você será capaz de fazer requisições HTTP para:
-- Criar usuários;
-- Fazer login;
-- Cadastrar, listar, editar e remover produtos.
+Está é uma API para um marketplace de cosméticos, produtos de beleza e de higiêne. Escrita na linguagem **Node.js** e no framework **Express.js**, com banco de dados **MongoDB**. 
 
-Além disso, esta API registra todas as requisições por meio de um _logger_, indicando data e hora, método HTTP e rota acessada.
-
-Para _criar usuários_, será necessário fornecer: nome, e-mail e senha.
-
-Para _fazer login_, será necessário informar, via autenticação Basic Auth: e-mail e senha.
-
-Para _cadastrar um produto_, serão necessários: nome (string), marca (string), ingredientes (string), indicação (string), volume (string), preço (decimal), disponibilidade (booleano), categoria (string) e imagem do produto (arquivo de imagem).
-
-Para _editar um produto_, é requerido o ID do produto, além do(s) dado(s) a alterar.
-
-Para _remover um produto_, é requerido o ID do mesmo.
-
-***
-***
-
-## Instruções de uso
-1. Clone o repositório https://github.com/dev-gsilv/futurabeutyhubapi;
-2. Execute `npm instal`, via terminal, para instalar todas as dependências;
+## Rodando localmente
+1. Clone o repositório 
+```bash
+git clone https://github.com/dev-gsilv/futurabeutyhubapi
+```
+2. Instale as dependências
+```bash
+  npm install
+```
 3. Crie um banco de dados MongoDB gratuito, acessando https://account.mongodb.com/account/login?nds=true;
 4. Na raiz do projeto clonado, crie um arquivo de variáveis de ambiente `.env`;
-5. Neste arquivo `.env`, insira as seguintes variáveis de ambiente: 
-    - `DB_USER`: nome de usuário de seu banco de dados MongoDB;
-    - `DB_PASS`: senha de seu banco de dados MongoDB;
-    - `DOMINIO_CLUSTER`: nome de domínio do cluster de seu banco de dados MongoDB;
-    - `JWT_SECRET`: uma string para configuração do token de acesso JWT.
-6. Execute, via terminal, o comando `npm start`.
+5. Adicione as seguintes variáveis de ambiente: 
+- `DB_USER`: nome de usuário de seu banco de dados MongoDB;
+- `DB_PASS`: senha de seu banco de dados MongoDB;
+- `DOMINIO_CLUSTER`: nome de domínio do cluster de seu banco de dados MongoDB. Semelhante a _clustername0.xmwufns.mongodb.net_;
+- `JWT_SECRET`: uma string aleatória para configuração do token de acesso JWT.
+6. Inicie o servidor
+```bash
+  npm start
+```
 7. Sua API estará rodando localmente, teste a resposta do servidor [aqui](localhost:3000/healthcheck).
+
+***
+
+### Documentação da API
+
+#### Acesso via Basic Auth
+
+```http
+  POST /login
+```
+
+| Parâmetro   | Tipo       | Descrição                           |
+| :---------- | :--------- | :---------------------------------- |
+| `email` | `string` | **Obrigatório**. E-mail e identificação única do usuário |
+| `senha` | `string` | **Obrigatório**. Senha do usuário |
+
+
+#### Criar um novo usuário
+
+```http
+  POST /registrar
+```
+
+| Parâmetro   | Tipo       | Descrição                           |
+| :---------- | :--------- | :---------------------------------- |
+| `nome` | `string` | **Obrigatório**. Nome do usuário. |
+| `email` | `string` | **Obrigatório**. E-mail e identificação única do usuário |
+| `senha` | `string` | **Obrigatório**. Senha do usuário |
+
+
+#### Criar um novo produto
+
+```http
+  POST /produtos
+```
+> Autenticação via token JWT
+
+| Parâmetro   | Tipo       | Descrição                           |
+| :---------- | :--------- | :---------------------------------- |
+| `nome` | `string` | **Obrigatório**. Nome do produto. |
+| `marca` | `string` | Marca do produto. |
+| `ingredientes` | `string` | Composição do produto. |
+| `indicacao` | `string` | Indicações de uso. |
+| `volume` | `string` | Volume ou peso do produto. |
+| `preco` | `decimal` | **Obrigatório**. Valor decimal do produto. |
+| `disponibilidade` | `boolean` | **Obrigatório**. Indicador de disponibilidade do produto. |
+| `categoria` | `string` | **Obrigatório**. Categoria(s) do produto. |
+| `imagem` | `string` | **Obrigatório**. Imagem ilustrativa do produto. |
+
+#### Buscar os dados de um ou mais produtos
+
+```http
+  GET /produtos
+```
+
+| Parâmetro    | Tipo       | Descrição                           |
+| :---------- | :--------- | :---------------------------------- |
+| `categoria` | `string` | Categoria do produto. Usado isoladamente ou em associação com `idUsuario`|
+| `idUsuario` | `string` | ID do usuário criador do produto. Usado isoladamente ou em associação com `categoria`|
+
+#### Buscar a imagem de um produto
+
+```http
+  GET /produtos/:id/imagem
+```
+
+| Parâmetro    | Tipo       | Descrição                           |
+| :---------- | :--------- | :---------------------------------- |
+| `idProduto` | `string` | ID do produto. |
+
+#### Editar os dados de um produto
+
+```http
+  PUT /produtos/:id
+```
+> Autenticação via token JWT
+
+| Parâmetro   | Tipo       | Descrição                           |
+| :---------- | :--------- | :---------------------------------- |
+| `nome` | `string` | Nome do produto. |
+| `marca` | `string` | Marca do produto. |
+| `ingredientes` | `string` | Composição do produto. |
+| `indicacao` | `string` | Indicações de uso. |
+| `volume` | `string` | Volume ou peso do produto. |
+| `preco` | `decimal` | Valor decimal do produto. |
+| `disponibilidade` | `boolean` | Indicador de disponibilidade do produto. |
+| `categoria` | `string` | Categoria(s) do produto. |
+| `imagem` | `string` | Imagem ilustrativa do produto. |
+
+#### Remover um produto
+
+```http
+  DELETE /produtos/:id
+```
+> Autenticação via token JWT
+
+| Parâmetro    | Tipo       | Descrição                           |
+| :---------- | :--------- | :---------------------------------- |
+| `idProduto` | `string` | ID do produto. |
+
+## Autores
+
+- [@dev-gsilv](https://github.com/dev-gsilv)
+- [@Leopagoti](https://github.com/Leopagoti)
