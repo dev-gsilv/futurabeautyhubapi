@@ -5,6 +5,7 @@ const conn = require('../src/db/mongo');
 
 const app = express();
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
 // Logger manual
 app.use((req, res, next) => {
