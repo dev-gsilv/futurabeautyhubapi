@@ -22,7 +22,7 @@ git clone https://github.com/dev-gsilv/futurabeutyhubapi
 ```bash
   npm start
 ```
-7. Sua API estará rodando localmente, teste a resposta do servidor [aqui](localhost:3000/healthcheck).
+7. Sua API estará rodando localmente, teste a resposta do servidor [aqui](http://localhost:3000/healthcheck).
 
 ***
 
