@@ -6,6 +6,7 @@ const {
     editarProduto,
     buscarProduto,
     removerProduto,
+    downloadImagem
 } = require('../controllers/produto.controller');
 
 const produtoRoutes = app => {
@@ -25,6 +26,8 @@ const produtoRoutes = app => {
     );
 
     app.delete('/produtos/:id', autenticar, removerProduto);
+
+    app.get('/produtos/:id/imagem', downloadImagem)
 };
 
 module.exports = produtoRoutes;

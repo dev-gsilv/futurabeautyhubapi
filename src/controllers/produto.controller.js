@@ -1,3 +1,4 @@
+const fs = require('fs');
 const Produto = require('../models/Produto');
 
 const cadastrarProduto = async (req, res) => {
@@ -34,15 +35,15 @@ const buscarProduto = async (req, res) => {
 
     let consulta = {};
     if (categoria) {
-      consulta.categoria = categoria;
+        consulta.categoria = categoria;
     }
     if (idUsuario) {
-      consulta.idUsuario = idUsuario;
+        consulta.idUsuario = idUsuario;
     }
-  
+
     const produtos = await Produto.find(consulta);
     res.status(200).send(produtos);
-}
+};
 
 const editarProduto = async (req, res) => {
     const idProduto = req.params.id;
@@ -96,9 +97,24 @@ const removerProduto = async (req, res) => {
     res.json({ mensagem: 'Produto excluído com sucesso' });
 };
 
+const downloadImagem = async (req, res) => {
+    const idProduto = req.params.id;
+    const produto = await Produto.findById(idProduto);
+
+    if (!produto) {
+        return res.status(404).json({ erro: 'Produto não encontrado.' });
+    }
+
+    const caminhoImagem = `uploads/${produto.imagem}`;
+    const imagem = fs.readFileSync(caminhoImagem);
+    res.contentType('image/jpeg');
+    res.status(200).send(imagem);
+};
+
 module.exports = {
     cadastrarProduto,
     editarProduto,
     buscarProduto,
     removerProduto,
+    downloadImagem,
 };
