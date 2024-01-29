@@ -11,13 +11,20 @@ git clone https://github.com/dev-gsilv/futurabeutyhubapi
 ```bash
   npm install
 ```
-3. Crie um banco de dados MongoDB gratuito, acessando https://account.mongodb.com/account/login?nds=true;
+3. Crie um banco de dados gratuito no MongoDB Atlas, [clique aqui](https://account.mongodb.com/account/login?nds=true). Veja um tutorial [aqui](https://www.coderrocketfuel.com/article/create-and-connect-to-a-mongodb-atlas-database-with-node-js);
 4. Na raiz do projeto clonado, crie um arquivo de variáveis de ambiente `.env`;
 5. Adicione as seguintes variáveis de ambiente: 
 - `DB_USER`: nome de usuário de seu banco de dados MongoDB;
 - `DB_PASS`: senha de seu banco de dados MongoDB;
 - `DOMINIO_CLUSTER`: nome de domínio do cluster de seu banco de dados MongoDB. Semelhante a _clustername0.xmwufns.mongodb.net_;
 - `JWT_SECRET`: uma string aleatória para configuração do token de acesso JWT.
+
+> Exemplo do _conexion string_ fornecido pelo MongoDB.
+![conexion_string](./uploads/image2.png)
+> Exemplo de preenchimento do arquivo _.env_
+![exemplo_arq_env](./uploads/image.png)
+
+
 6. Inicie o servidor
 ```bash
   npm start
