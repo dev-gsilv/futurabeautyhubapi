@@ -20,10 +20,11 @@ git clone https://github.com/dev-gsilv/futurabeutyhubapi
 - `JWT_SECRET`: uma string aleatória para configuração do token de acesso JWT.
 
 > Exemplo do _conexion string_ fornecido pelo MongoDB.
-![conexion_string](./uploads/image2.png)
+>![conexion_string](./uploads/image2.png)
+> 
 > Exemplo de preenchimento do arquivo _.env_
-
-![exemplo_arq_env](./uploads/image.png)
+> 
+>![exemplo_arq_env](./uploads/image.png)
 
 
 6. Inicie o servidor
