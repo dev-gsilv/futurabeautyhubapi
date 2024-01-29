@@ -1,6 +1,6 @@
 # Futura Beauty Hub
 
-Está é uma API para um marketplace de cosméticos, produtos de beleza e de higiêne. Escrita na linguagem **Node.js** e no framework **Express.js**, com banco de dados **MongoDB**. 
+API para marketplace de cosméticos, produtos de beleza e de higiêne. Escrita na linguagem **Node.js** e no framework **Express.js**, com banco de dados **MongoDB**. 
 
 ## Rodando localmente
 1. Clone o repositório 
