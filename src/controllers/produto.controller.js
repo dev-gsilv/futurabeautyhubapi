@@ -1,5 +1,6 @@
 const fs = require('fs');
 const Produto = require('../models/Produto');
+const {validacaoMongoSchema} = require('../utils/validadorMongo')
 
 const cadastrarProduto = async (req, res) => {
     const {
@@ -26,8 +27,11 @@ const cadastrarProduto = async (req, res) => {
         idUsuario,
         imagem,
     });
-    await produto.save();
-    res.json(produto);
+
+    if (validacaoMongoSchema(produto, res)){
+        await produto.save();
+        res.json(produto);
+    };
 };
 
 const buscarProduto = async (req, res) => {
@@ -94,7 +98,7 @@ const removerProduto = async (req, res) => {
     }
 
     await Produto.deleteOne({ _id: idProduto });
-    res.json({ mensagem: 'Produto excluído com sucesso' });
+    res.status(204).send({ mensagem: 'Produto excluído com sucesso' });
 };
 
 const downloadImagem = async (req, res) => {

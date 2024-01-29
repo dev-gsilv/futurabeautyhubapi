@@ -1,5 +1,6 @@
 const Usuario = require('../models/Usuario');
 const { cadastroHash } = require('../utils/geradorHash');
+const { validarEmail } = require('../utils/validadorMongo');
 
 const registrarUsuario = async (req, res) => {
     try {
@@ -10,13 +11,16 @@ const registrarUsuario = async (req, res) => {
         const senhaHash = saltSenhaArr[1];
 
         const usuario = new Usuario({ nome, email, salt, senhaHash });
-        await usuario.save();
 
+        await usuario.save();
         res.status(201).send({ id: usuario._id });
-    } catch (error) {
-        res.status(400).send(
-            'Verifique as informações enviadas e tente novamente!',
+    } catch (err) {
+        console.log(
+            `${new Date().toISOString()} - ERRO! Tipo: duplicate key error; Msg:${
+                err.message
+            }`,
         );
+        res.status(400).send(`O e-mail informado já está cadastrado!`);
     }
 };
 
