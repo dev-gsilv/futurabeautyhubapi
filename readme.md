@@ -22,6 +22,7 @@ git clone https://github.com/dev-gsilv/futurabeutyhubapi
 > Exemplo do _conexion string_ fornecido pelo MongoDB.
 ![conexion_string](./uploads/image2.png)
 > Exemplo de preenchimento do arquivo _.env_
+
 ![exemplo_arq_env](./uploads/image.png)
 
 
