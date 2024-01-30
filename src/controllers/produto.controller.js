@@ -1,6 +1,6 @@
 const fs = require('fs');
 const Produto = require('../models/Produto');
-const {validacaoMongoSchema} = require('../utils/validadorMongo')
+const { validacaoMongoSchema } = require('../utils/validadorMongo');
 
 const cadastrarProduto = async (req, res) => {
     const {
@@ -28,10 +28,10 @@ const cadastrarProduto = async (req, res) => {
         imagem,
     });
 
-    if (validacaoMongoSchema(produto, res)){
+    if (validacaoMongoSchema(produto, res)) {
         await produto.save();
         res.json(produto);
-    };
+    }
 };
 
 const buscarProduto = async (req, res) => {
@@ -89,16 +89,33 @@ const removerProduto = async (req, res) => {
     const idProduto = req.params.id;
     const idUsuario = req.usuario.userId;
 
-    const produto = await Produto.findOne({ _id: idProduto, idUsuario });
+    const produto = await Produto.findOne({ _id: idProduto });
 
     if (!produto) {
+        return res.status(404).json({
+            erro: 'Produto solicitado não existe!',
+        });
+    }
+    if (produto.idUsuario != idUsuario) {
         return res.status(403).json({
             erro: 'Você não tem permissão para excluir este produto',
         });
     }
 
-    await Produto.deleteOne({ _id: idProduto });
-    res.status(204).send({ mensagem: 'Produto excluído com sucesso' });
+    // Recupera o diretório raiz
+    const path = __dirname.toString().split('src/controllers');
+    // Concatena o diretório raiz com o caminho+nome da imagem e remove o arquivo do servidor
+    fs.unlink(path[0] + 'uploads/' + produto.imagem, async err => {
+        // Se erro, retorna para o cliente um status de 'erro no servidor'
+        if (err) {
+            console.error(`${new Date().toISOString()} - ERRO! ${err.message}`);
+            return res.status(500).send(err.message);
+            // Se sucesso, remove o produto do banco de dados
+        } else {
+            await Produto.deleteOne({ _id: idProduto });
+            res.status(204).send();
+        }
+    });
 };
 
 const downloadImagem = async (req, res) => {
