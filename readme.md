@@ -2,6 +2,9 @@
 
 API para marketplace de cosméticos, produtos de beleza e de higiêne. Escrita na linguagem **Node.js** e no framework **Express.js**, com banco de dados **MongoDB**. 
 
+***
+***
+
 ## Rodando localmente
 1. Clone o repositório 
 ```bash
@@ -34,6 +37,7 @@ git clone https://github.com/dev-gsilv/futurabeutyhubapi
 7. Sua API estará rodando localmente, teste a resposta do servidor [aqui](http://localhost:3000/healthcheck).
 
 ***
+***
 
 ### Documentação da API
 
@@ -47,6 +51,8 @@ git clone https://github.com/dev-gsilv/futurabeutyhubapi
 | :---------- | :--------- | :---------------------------------- |
 | `email` | `string` | **Obrigatório**. E-mail e identificação única do usuário |
 | `senha` | `string` | **Obrigatório**. Senha do usuário |
+
+***
 
 
 #### Criar um novo usuário
@@ -62,12 +68,14 @@ git clone https://github.com/dev-gsilv/futurabeutyhubapi
 | `senha` | `string` | **Obrigatório**. Senha do usuário |
 
 
+***
+
 #### Criar um novo produto
 
 ```http
   POST /produtos
 ```
-> Autenticação via token JWT
+> Autenticação via token JWT*
 
 | Parâmetro   | Tipo       | Descrição                           |
 | :---------- | :--------- | :---------------------------------- |
@@ -81,6 +89,8 @@ git clone https://github.com/dev-gsilv/futurabeutyhubapi
 | `categoria` | `string` | **Obrigatório**. Categoria(s) do produto. |
 | `imagem` | `string` | **Obrigatório**. Imagem ilustrativa do produto. |
 
+***
+
 #### Buscar os dados de um ou mais produtos
 
 ```http
@@ -92,6 +102,8 @@ git clone https://github.com/dev-gsilv/futurabeutyhubapi
 | `categoria` | `string` | Categoria do produto. Usado isoladamente ou em associação com `idUsuario`|
 | `idUsuario` | `string` | ID do usuário criador do produto. Usado isoladamente ou em associação com `categoria`|
 
+***
+
 #### Buscar a imagem de um produto
 
 ```http
@@ -102,12 +114,14 @@ git clone https://github.com/dev-gsilv/futurabeutyhubapi
 | :---------- | :--------- | :---------------------------------- |
 | `idProduto` | `string` | ID do produto. |
 
+***
+
 #### Editar os dados de um produto
 
 ```http
   PUT /produtos/:id
 ```
-> Autenticação via token JWT
+> Autenticação via token JWT*
 
 | Parâmetro   | Tipo       | Descrição                           |
 | :---------- | :--------- | :---------------------------------- |
@@ -121,16 +135,29 @@ git clone https://github.com/dev-gsilv/futurabeutyhubapi
 | `categoria` | `string` | Categoria(s) do produto. |
 | `imagem` | `string` | Imagem ilustrativa do produto. |
 
+***
+
 #### Remover um produto
 
 ```http
   DELETE /produtos/:id
 ```
-> Autenticação via token JWT
+> Autenticação via token JWT*
 
 | Parâmetro    | Tipo       | Descrição                           |
 | :---------- | :--------- | :---------------------------------- |
 | `idProduto` | `string` | ID do produto. |
+
+***
+
+> ***Para rotas com autenticação por token**
+>
+> | Tipo | Chave | Valor |
+> | :---- | :---- | :---- |
+> | Header | authorization | JWT fornecido no login |
+
+***
+***
 
 ## Autores
 
