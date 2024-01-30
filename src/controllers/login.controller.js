@@ -34,7 +34,7 @@ const login = async (req, res) => {
             } else throw new Error('Credenciais inválidas');
         } else throw new Error('Credenciais inválidas');
     } catch (err) {
-        console.error(err);
+        console.error(`${new Date().toISOString()} - ERRO! ${err.message}`);
         res.status(401).send(err.toString());
     }
 };

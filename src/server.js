@@ -1,17 +1,15 @@
 const express = require('express');
-
 const routes = require('./routes/router');
 const conn = require('../src/db/mongo');
+const { loggerMorgan, loggerTerminal } = require('./loggers/loggers');
 
 const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-// Logger manual
-app.use((req, res, next) => {
-    console.log(`${new Date().toISOString()} - ${req.method} ${req.url}`);
-    next();
-});
+// Serviço de log
+loggerMorgan(app);
+loggerTerminal(app);
 
 // Inicializa a conexão com o banco de dados
 conn();

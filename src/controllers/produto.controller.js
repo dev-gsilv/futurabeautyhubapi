@@ -106,7 +106,7 @@ const removerProduto = async (req, res) => {
     const path = __dirname.toString().split('src/controllers');
     // Concatena o diretório raiz com o caminho+nome da imagem e remove o arquivo do servidor
     fs.unlink(path[0] + 'uploads/' + produto.imagem, async err => {
-        // Se erro, retorna para o cliente um status de 'erro no servidor'
+        // Se erro, retorna para o cliente um status de 'erro no servidor' + mensagem
         if (err) {
             console.error(`${new Date().toISOString()} - ERRO! ${err.message}`);
             return res.status(500).send(err.message);
